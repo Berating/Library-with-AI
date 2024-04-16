@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+  <title>
+    Giftos
+  </title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="/">
+          <span>
+            Bookos
+          </span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class=""></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav  ">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="shop">
+                Shop <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="why">
+                Why Us
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="testimonial">
+                Testimonial
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact">Contact Us</a>
+            </li>
+          </ul>
+          <div class="user_option">
+            <a href="shop">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+            </a>
+            <form class="form-inline ">
+              <button class="btn nav_search-btn" type="submit">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <!-- end header section -->
+
+  </div>
+  <!-- end hero area -->
+
+  <!-- shop section -->
+
+  <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Latest Books
+        </h2>
+      </div>
+      
+      	<form id="searchForm" method="get" action="/books">
+		    <div class="genre-and-add-container">
+		        <label for="searchCategory">Search by Genre:</label>
+		        <select id="searchCategory" name="genre">
+		            <option value="Comedy">Comedy</option>
+		            <option value="Horror">Horror</option>
+		            <option value="Romance">Romance</option>
+		            <option value="Picaresque novel">Picaresque novel</option>
+		            <!-- Add more genre options here -->
+		        </select>
+		        <button type="submit">Search</button>
+		    </div>
+		</form>
+		
+		<!-- 
+		This code was intended to work with the ontology. 
+		Once a genre was selected by the user, the ontology would search for a book matching the desired search, and then display it to the user. 
+		Still "WIP".
+		 <h1>Table of Contents</h1>
+	    <table>
+	        <thead>
+	            <tr>
+	                <th>Title</th>
+	                <th>Genre</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr th:each="book : ${books}">
+	                <td th:text="${book.bookName}"></td>
+	                <td th:text="${book.genre}"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+		  -->
+		  
+		 <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="">
+              <div class="img-box">
+                <img src="images/Adventures of Huckleberry Finn.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  Adventures of Huckleberry Finn
+                </h6>
+                <h6>
+                  Buy/View
+                </h6>
+              </div>
+              <div class="new">
+                <span>
+                  New
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+		 
+		 
+          <!--  Table of contents for Scrapper  -->
+          <div class="container mt-5">
+		        <h1>Where to buy</h1>
+		        
+			    <form th:action="@{/scrape}" method="get">
+			        <input type="text" name="bookTitle" placeholder="Enter book title" />
+			        <button type="submit">Search</button>
+			    </form>
+		        
+		        <!-- Table to display books -->
+		        <table class="table mt-3">
+		            <thead>
+		                <tr>
+		                    <th>Book Name</th>
+		                    <th>Price</th>
+		                    <th>Website</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		                <tr th:each="bookInfo : ${bookInfoList}">
+		                    <td th:text="${bookInfo.name}"></td>
+		                    <td th:text="${bookInfo.price}"></td>
+		                    <td>
+			                	<a th:href="${bookInfo.url}" target="_blank">Barnes and Noble</a>
+			            	</td>
+		                </tr>
+		            </tbody>
+		        </table>
+    		</div>
+       </div>
+    </div>
+  </section>
+
+  <!-- end shop section -->
+
+  <!-- info section -->
+
+  <section class="info_section  layout_padding2-top">
+    <div class="social_container">
+      <div class="social_box">
+        <a href="">
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+        <a href="">
+          <i class="fa fa-youtube" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+    <div class="info_container ">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              ABOUT US
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="info_form ">
+              <h5>
+                Newsletter
+              </h5>
+              <form action="#">
+                <input type="email" placeholder="Enter your email">
+                <button>
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              NEED HELP
+            </h6>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet, consectetur adipiscing elit, sed doLorem ipsum dolor sit amet,
+            </p>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <h6>
+              CONTACT US
+            </h6>
+            <div class="info_link-box">
+              <a href="">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span> Gb road 123 london Uk </span>
+              </a>
+              <a href="">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>+01 12345678901</span>
+              </a>
+              <a href="">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span> demo@gmail.com</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer section -->
+    <footer class=" footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> All Rights Reserved By
+          <a href="https://html.design/">Free Html Templates</a>
+        </p>
+      </div>
+    </footer>
+    <!-- footer section -->
+
+  </section>
+
+  <!-- end info section -->
+
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+  </script>
+  <script src="js/custom.js"></script>
+  <script>
+  function searchBooks() {
+    // Get the selected genre
+    var selectedGenre = document.getElementById("searchCategory").value;
+
+    // Send an AJAX request to the JADE agent's endpoint
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "/jade-agent-endpoint?genre=" + selectedGenre, true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Handle the response from the JADE agent (e.g., update the HTML page)
+        var response = JSON.parse(xhr.responseText);
+        // Update the HTML page with the search results
+        // ...
+      }
+    };
+
+    xhr.send();
+  }
+</script>
+
+</body>
+
+</html>
